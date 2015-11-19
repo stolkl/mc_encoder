@@ -512,13 +512,13 @@ lwIPHostTimerHandler(void)
         RIT128x96x4StringDraw("                       ", 0, 16, 15);
         RIT128x96x4StringDraw("                       ", 0, 24, 15);
         RIT128x96x4StringDraw("IP:   ", 0, 16, 15);
-        RIT128x96x4StringDraw("MASK: ", 0, 24, 15);
-        RIT128x96x4StringDraw("GW:   ", 0, 32, 15);
+        //RIT128x96x4StringDraw("MASK: ", 0, 24, 15);
+        //RIT128x96x4StringDraw("GW:   ", 0, 32, 15);
         DisplayIPAddress(ulIPAddress, 36, 16);
         ulIPAddress = lwIPLocalNetMaskGet();
-        DisplayIPAddress(ulIPAddress, 36, 24);
+        //DisplayIPAddress(ulIPAddress, 36, 24);
         ulIPAddress = lwIPLocalGWAddrGet();
-        DisplayIPAddress(ulIPAddress, 36, 32);
+        //DisplayIPAddress(ulIPAddress, 36, 32);
         RIT128x96x4Disable();
     }
 }
@@ -546,8 +546,8 @@ main(void)
     // Initialize the OLED display.
     //
     RIT128x96x4Init(1000000);
-    RIT128x96x4StringDraw("Web-Based I/O Control", 0, 0, 15);
-    RIT128x96x4StringDraw("Browser Message:", 0, 53, 15);
+    RIT128x96x4StringDraw("MORSE CODE ENCODER", 0, 0, 15);
+    RIT128x96x4StringDraw("Message:", 0, 53, 15);
 
     //
     // Enable and Reset the Ethernet Controller.
