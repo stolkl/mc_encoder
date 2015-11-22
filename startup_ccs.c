@@ -2,7 +2,7 @@
 //
 // startup_ccs.c - Startup code for use with TI's Code Composer Studio.
 //
-// Copyright (c) 2008-2013 Texas Instruments Incorporated.  All rights reserved.
+// Copyright (c) 2005-2011 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
 // 
 // Texas Instruments (TI) is supplying this software for use solely and
@@ -18,7 +18,7 @@
 // CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
 // DAMAGES, FOR ANY REASON WHATSOEVER.
 // 
-// This is part of revision 10007 of the EK-LM3S8962 Firmware Package.
+// This is part of revision 6852 of the EK-LM3S8962 Firmware Package.
 //
 //*****************************************************************************
 
@@ -53,6 +53,8 @@ extern unsigned long __STACK_TOP;
 //
 //*****************************************************************************
 extern void lwIPEthernetIntHandler(void);
+extern void Timer0IntHandler(void);
+extern void Timer1IntHandler(void);
 extern void SysTickIntHandler(void);
 
 //*****************************************************************************
@@ -101,9 +103,9 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // ADC Sequence 2
     IntDefaultHandler,                      // ADC Sequence 3
     IntDefaultHandler,                      // Watchdog timer
-    IntDefaultHandler,                      // Timer 0 subtimer A
+    IntDefaultHandler,                       // Timer 0 subtimer A
     IntDefaultHandler,                      // Timer 0 subtimer B
-    IntDefaultHandler,                      // Timer 1 subtimer A
+    IntDefaultHandler,                       // Timer 1 subtimer A
     IntDefaultHandler,                      // Timer 1 subtimer B
     IntDefaultHandler,                      // Timer 2 subtimer A
     IntDefaultHandler,                      // Timer 2 subtimer B
@@ -124,7 +126,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // CAN0
     IntDefaultHandler,                      // CAN1
     IntDefaultHandler,                      // CAN2
-    lwIPEthernetIntHandler,                 // Ethernet
+    lwIPEthernetIntHandler,                      // Ethernet
     IntDefaultHandler                       // Hibernate
 };
 
@@ -142,7 +144,7 @@ void
 ResetISR(void)
 {
     //
-    // Jump to the CCS C initialization routine.
+    // Jump to the CCS C Initialization Routine.
     //
     __asm("    .global _c_int00\n"
           "    b.w     _c_int00");
