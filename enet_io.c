@@ -41,8 +41,6 @@
 #include "drivers/rit128x96x4.h"
 #include "io.h"
 #include "cgifuncs.h"
-#include "audio.h"
-#include "globals.h"
 
 //*****************************************************************************
 //
@@ -107,7 +105,7 @@
 // Defines for setting up the system clock.
 //
 //*****************************************************************************
-#define SYSTICKHZ               300
+#define SYSTICKHZ               100
 #define SYSTICKMS               (1000 / SYSTICKHZ)
 #define SYSTICKUS               (1000000 / SYSTICKHZ)
 #define SYSTICKNS               (1000000000 / SYSTICKHZ)
@@ -347,12 +345,6 @@ SetTextCGIHandler(int iIndex, int iNumParams, char *pcParam[], char *pcValue[])
     //
     RIT128x96x4StringDraw("                      ", 0, 64, 12);
     RIT128x96x4StringDraw(pcDecodedString, 0, 64, 12);
-    
-    int i;
-    for(i=0; pcDecodedString[i] != '\0'; i++)
-    {
-        send(pcDecodedString[i]);
-    }
 
     //
     // Release the SSI.
@@ -549,10 +541,6 @@ main(void)
     //
     SysCtlClockSet(SYSCTL_SYSDIV_4 | SYSCTL_USE_PLL | SYSCTL_OSC_MAIN |
                    SYSCTL_XTAL_8MHZ);
-    SysCtlPWMClockSet(SYSCTL_PWMDIV_8);
-    
-    //Get the system clock speed.
-    g_ulSystemClock = SysCtlClockGet();
 
     //
     // Initialize the OLED display.
@@ -566,13 +554,6 @@ main(void)
     //
     SysCtlPeripheralEnable(SYSCTL_PERIPH_ETH);
     SysCtlPeripheralReset(SYSCTL_PERIPH_ETH);
-    
-	// Enable the peripherals used by the application.
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOG);
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM);
-	
-	//     Configure the speaker
-	GPIOPinTypePWM(GPIO_PORTG_BASE, GPIO_PIN_1); 
 
     //
     // Enable Port F for Ethernet LEDs.
@@ -658,10 +639,6 @@ main(void)
     // Initialize IO controls
     //
     io_init();
-    
-    // Initialize the PWM for generating music and sound effects.
-    
-    AudioOn();
 
     //
     // Loop forever.  All the work is done in interrupt handlers.
