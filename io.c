@@ -76,13 +76,13 @@ io_init(void)
     //
     // Enable the PWM generator.
     //
-    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM0);
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM);
 
     //
     // Configure the PWM generator for count down mode with immediate updates
     // to the parameters.
     //
-    PWMGenConfigure(PWM0_BASE, PWM_GEN_0,
+    PWMGenConfigure(PWM_BASE, PWM_GEN_0,
                     PWM_GEN_MODE_DOWN | PWM_GEN_MODE_NO_SYNC);
 
     //
@@ -104,18 +104,18 @@ io_init(void)
     //
     // Set the period of PWM1.
     //
-    PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ulPWMClock / g_ulFrequency);
+    PWMGenPeriodSet(PWM_BASE, PWM_GEN_0, ulPWMClock / g_ulFrequency);
 
     //
     // Set the pulse width of PWM1.
     //
-    PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1,
+    PWMPulseWidthSet(PWM_BASE, PWM_OUT_1,
                      ((ulPWMClock * g_ulDutyCycle)/100) / g_ulFrequency);
 
     //
     // Start the timers in generator 0.
     //
-    PWMGenEnable(PWM0_BASE, PWM_GEN_0);
+    PWMGenEnable(PWM_BASE, PWM_GEN_0);
 
 }
 
@@ -144,7 +144,7 @@ io_set_pwm(tBoolean bOn)
     //
     // Enable or disable the PWM1 output.
     //
-    PWMOutputState(PWM0_BASE, PWM_OUT_1_BIT, bOn);
+    PWMOutputState(PWM_BASE, PWM_OUT_1_BIT, bOn);
 }
 
 //*****************************************************************************
@@ -170,12 +170,12 @@ io_pwm_freq(unsigned long ulFreq)
     //
     // Set the period.
     //
-    PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ulPWMClock / g_ulFrequency);
+    PWMGenPeriodSet(PWM_BASE, PWM_GEN_0, ulPWMClock / g_ulFrequency);
 
     //
     // Set the pulse width of PWM1
     //
-    PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1,
+    PWMPulseWidthSet(PWM_BASE, PWM_OUT_1,
                      ((ulPWMClock * g_ulDutyCycle)/100) / g_ulFrequency);
 
 }
@@ -203,12 +203,12 @@ io_pwm_dutycycle(unsigned long ulDutyCycle)
     //
     // Set the period.
     //
-    PWMGenPeriodSet(PWM0_BASE, PWM_GEN_0, ulPWMClock / g_ulFrequency);
+    PWMGenPeriodSet(PWM_BASE, PWM_GEN_0, ulPWMClock / g_ulFrequency);
 
     //
     // Set the pulse width of PWM1
     //
-    PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1,
+    PWMPulseWidthSet(PWM_BASE, PWM_OUT_1,
                      ((ulPWMClock * g_ulDutyCycle)/100) / g_ulFrequency);
 
 }
@@ -267,7 +267,7 @@ io_get_pwmstate(char * pcBuf, int iBufLen)
     //
     // Get the state of the PWM1
     //
-    if(HWREG(PWM0_BASE + PWM_O_ENABLE) & PWM_OUT_1_BIT)
+    if(HWREG(PWM_BASE + PWM_O_ENABLE) & PWM_OUT_1_BIT)
     {
         usnprintf(pcBuf, iBufLen, "ON");
     }
@@ -289,7 +289,7 @@ io_is_pwm_on(void)
     //
     // Get the state of the PWM1
     //
-    if(HWREG(PWM0_BASE + PWM_O_ENABLE) & PWM_OUT_1_BIT)
+    if(HWREG(PWM_BASE + PWM_O_ENABLE) & PWM_OUT_1_BIT)
     {
         return(1);
     }
