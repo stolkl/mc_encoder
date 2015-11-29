@@ -43,6 +43,7 @@
 #include "cgifuncs.h"
 #include "audio.h"
 #include "globals.h"
+#include "inc/lm3s8962.h"
 
 //*****************************************************************************
 //
@@ -543,6 +544,16 @@ main(void)
 {
     unsigned long ulUser0, ulUser1;
     unsigned char pucMACArray[8];
+    volatile unsigned long ulLoop;
+
+    //STATUS LED Initialization
+    SYSCTL_RCGC2_R = SYSCTL_RCGC2_GPIOF;
+    // Do a dummy read to insert a few cycles after enabling the peripheral.
+    ulLoop = SYSCTL_RCGC2_R;
+    // Enable the GPIO pin for the LED (PF0).  Set the direction as output, and
+    // enable the GPIO pin for digital function.
+    GPIO_PORTF_DIR_R = 0x01;
+    GPIO_PORTF_DEN_R = 0x01;
 
     //
     // Set the clocking to run directly from the crystal.

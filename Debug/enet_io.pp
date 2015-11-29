@@ -47,6 +47,9 @@ enet_io.obj: C:/StellarisWare/third_party/lwip-1.3.2/apps/httpserver_raw/httpd.h
 enet_io.obj: C:/StellarisWare/boards/ek-lm3s8962/drivers/rit128x96x4.h
 enet_io.obj: ../io.h
 enet_io.obj: ../cgifuncs.h
+enet_io.obj: ../audio.h
+enet_io.obj: ../globals.h
+enet_io.obj: C:/StellarisWare/inc/lm3s8962.h
 
 ../enet_io.c: 
 C:/ti/ccsv5/tools/compiler/tms470_4.9.5/include/string.h: 
@@ -95,3 +98,6 @@ C:/StellarisWare/third_party/lwip-1.3.2/apps/httpserver_raw/httpd.h:
 C:/StellarisWare/boards/ek-lm3s8962/drivers/rit128x96x4.h: 
 ../io.h: 
 ../cgifuncs.h: 
+../audio.h: 
+../globals.h: 
+C:/StellarisWare/inc/lm3s8962.h: 

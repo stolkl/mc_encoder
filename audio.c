@@ -6,6 +6,7 @@
 #include "globals.h"
 #include "driverlib/sysctl.h"
 #include "drivers/rit128x96x4.h"
+#include "inc/lm3s8962.h"
 
 //*****************************************************************************
 //
@@ -216,6 +217,12 @@ void dot(void)
     //
     AudioVolume(g_ucVolume);
     
+
+    //
+    //Turn LED on
+    //
+    GPIO_PORTF_DATA_R |= 0x01;
+
     //
     // Set the PWM frequency to the next frequency in the sound effect.
     //
@@ -224,6 +231,13 @@ void dot(void)
                      (500 * 8)));
     PWMSyncUpdate(PWM_BASE, PWM_GEN_0_BIT);
     delay(DOTLENGTH);
+
+    //
+    //Turn LED off
+    //
+	GPIO_PORTF_DATA_R &= ~(0x01);
+
+
     //
     // The sound effect is over, so mute the output.
     //
@@ -240,6 +254,11 @@ void dash(void)
     AudioVolume(g_ucVolume);
     
     //
+    //Turn LED ON
+    //
+    GPIO_PORTF_DATA_R |= 0x01;
+
+    //
     // Set the PWM frequency to the next frequency in the sound effect.
     //
     PWMGenPeriodSet(PWM_BASE, PWM_GEN_0,
@@ -247,6 +266,13 @@ void dash(void)
                      (500 * 8)));
     PWMSyncUpdate(PWM_BASE, PWM_GEN_0_BIT);
     delay(DOTLENGTH*3);
+
+    //
+    //Turn LED OFF
+    //
+    GPIO_PORTF_DATA_R &= ~(0x01);
+
+
     //
     // The sound effect is over, so mute the output.
     //

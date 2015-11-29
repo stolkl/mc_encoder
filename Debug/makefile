@@ -14,10 +14,12 @@ $(GEN_CMDS__FLAG) \
 "./utils/lwiplib.obj" \
 "./utils/locator.obj" \
 "./startup_ccs.obj" \
+"./main.obj" \
 "./lmi_fs.obj" \
 "./io.obj" \
 "./enet_io.obj" \
 "./cgifuncs.obj" \
+"./audio.obj" \
 -l"libc.a" \
 -l"C:/StellarisWare/boards/ek-lm3s8962/enet_io/ccs/../../../../driverlib/ccs-cm3/Debug/driverlib-cm3.lib" \
 "../enet_io_ccs.cmd" \
@@ -139,8 +141,8 @@ morse_testing.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(TMS470_EXECUTABLE_OUTPUTS__QUOTED) "morse_testing.out"
-	-$(RM) "cgifuncs.pp" "enet_io.pp" "io.pp" "lmi_fs.pp" "startup_ccs.pp" "utils\locator.pp" "utils\lwiplib.pp" "utils\ustdlib.pp" "third_party\lwip-1.3.2\apps\httpserver_raw\httpd.pp" "drivers\rit128x96x4.pp" 
-	-$(RM) "cgifuncs.obj" "enet_io.obj" "io.obj" "lmi_fs.obj" "startup_ccs.obj" "utils\locator.obj" "utils\lwiplib.obj" "utils\ustdlib.obj" "third_party\lwip-1.3.2\apps\httpserver_raw\httpd.obj" "drivers\rit128x96x4.obj" 
+	-$(RM) "audio.pp" "cgifuncs.pp" "enet_io.pp" "io.pp" "lmi_fs.pp" "main.pp" "startup_ccs.pp" "utils\locator.pp" "utils\lwiplib.pp" "utils\ustdlib.pp" "third_party\lwip-1.3.2\apps\httpserver_raw\httpd.pp" "drivers\rit128x96x4.pp" 
+	-$(RM) "audio.obj" "cgifuncs.obj" "enet_io.obj" "io.obj" "lmi_fs.obj" "main.obj" "startup_ccs.obj" "utils\locator.obj" "utils\lwiplib.obj" "utils\ustdlib.obj" "third_party\lwip-1.3.2\apps\httpserver_raw\httpd.obj" "drivers\rit128x96x4.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

@@ -1,1 +1,1 @@
-"../cgifuncs.c" "../enet_io.c" "../io.c" "../lmi_fs.c" "../startup_ccs.c" 
+"../audio.c" "../cgifuncs.c" "../enet_io.c" "../io.c" "../lmi_fs.c" "../main.c" "../startup_ccs.c" 
