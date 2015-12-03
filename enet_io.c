@@ -25,7 +25,6 @@
 #include <string.h>
 #include "inc/hw_ints.h"
 #include "inc/hw_memmap.h"
-#include "inc/hw_nvic.h"
 #include "inc/hw_types.h"
 #include "driverlib/ethernet.h"
 #include "driverlib/flash.h"
@@ -102,6 +101,16 @@
 //! http://savannah.nongnu.org/projects/lwip/
 //
 //*****************************************************************************
+
+
+//*****************************************************************************
+//
+// The speed of the processor clock, which is therefore the speed of the clock
+// that is fed to the peripherals.
+//
+//*****************************************************************************
+unsigned long g_ulSystemClock;
+
 
 //*****************************************************************************
 //

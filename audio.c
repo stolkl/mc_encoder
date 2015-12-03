@@ -295,8 +295,6 @@ void wordBreak() {
 }
 
 void send(char letter) {
-	RIT128x96x4StringDraw("                      ", 24, 42, 15);
-	RIT128x96x4StringDraw(&letter, 24, 42, 15);
     // Sends the given letter to the output
     switch (letter) {
         case 'A':
